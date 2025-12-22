@@ -131,8 +131,8 @@ function calculateCombination(
       voiceBaseCostUSD = voiceAgent.monthlyBaseCost || 0;
       voicePerMinuteCostUSD = (voiceAgent.pricePerMinute || 0) * input.minutesPerMonth;
       voiceCostUSD = voiceBaseCostUSD + voicePerMinuteCostUSD;
-      voiceCostINR = convertUSDToINR(voiceCostUSD);
-    }
+    voiceCostINR = convertUSDToINR(voiceCostUSD);
+  }
   }
 
   // Calculate hosting cost breakdown

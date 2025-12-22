@@ -148,18 +148,114 @@ export default function BudgetForm({ onSubmit, isCalculating }: BudgetFormProps)
       {/* Minutes per Month */}
       <div>
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          Minutes per Month
+          Minutes per Month: {formData.minutesPerMonth.toLocaleString()}
         </label>
+        <input
+          type="range"
+          min="0"
+          max="10000"
+          step="100"
+          value={formData.minutesPerMonth}
+          onChange={(e) => updateField('minutesPerMonth', Number(e.target.value))}
+          className="w-full"
+        />
+        <div className="flex justify-between text-xs text-gray-500 mt-1">
+          <span>0</span>
+          <span>10,000</span>
+        </div>
         <input
           type="number"
           min="0"
           step="100"
           value={formData.minutesPerMonth}
           onChange={(e) => updateField('minutesPerMonth', Number(e.target.value))}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:bg-black dark:border-gray-700 dark:text-white"
+          className="w-full mt-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:bg-black dark:border-gray-700 dark:text-white"
           required
         />
       </div>
+
+      {/* Voice Minutes Breakdown (if using voice agent) */}
+      {formData.useVoiceAgent && (
+        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+            Voice Agent Cost Preview (for {formData.minutesPerMonth.toLocaleString()} minutes)
+          </h3>
+          <div className="space-y-2 text-xs">
+            {/* Gemini Live */}
+            <div className="flex justify-between items-center">
+              <span className="text-gray-700 dark:text-gray-300">Gemini Live:</span>
+              <div className="text-right">
+                <div className="font-medium text-gray-900 dark:text-white">
+                  ${((formData.minutesPerMonth * 300 / 1_000_000) * 17.05).toFixed(2)}
+                </div>
+                <div className="text-gray-500">
+                  ₹{((formData.minutesPerMonth * 300 / 1_000_000) * 17.05 * 90).toFixed(0)}
+                </div>
+              </div>
+            </div>
+            {/* GPT Realtime */}
+            <div className="flex justify-between items-center">
+              <span className="text-gray-700 dark:text-gray-300">GPT Realtime:</span>
+              <div className="text-right">
+                <div className="font-medium text-gray-900 dark:text-white">
+                  ${((formData.minutesPerMonth * 300 / 1_000_000) * 116.00).toFixed(2)}
+                </div>
+                <div className="text-gray-500">
+                  ₹{((formData.minutesPerMonth * 300 / 1_000_000) * 116.00 * 90).toFixed(0)}
+                </div>
+              </div>
+            </div>
+            {/* Hume Pro */}
+            <div className="flex justify-between items-center">
+              <span className="text-gray-700 dark:text-gray-300">Hume Pro:</span>
+              <div className="text-right">
+                <div className="font-medium text-gray-900 dark:text-white">
+                  ${(70 + formData.minutesPerMonth * 0.06).toFixed(2)}
+                </div>
+                <div className="text-gray-500">
+                  ₹{((70 + formData.minutesPerMonth * 0.06) * 90).toFixed(0)}
+                </div>
+              </div>
+            </div>
+            {/* Hume Scale */}
+            <div className="flex justify-between items-center">
+              <span className="text-gray-700 dark:text-gray-300">Hume Scale:</span>
+              <div className="text-right">
+                <div className="font-medium text-gray-900 dark:text-white">
+                  ${(200 + formData.minutesPerMonth * 0.05).toFixed(2)}
+                </div>
+                <div className="text-gray-500">
+                  ₹{((200 + formData.minutesPerMonth * 0.05) * 90).toFixed(0)}
+                </div>
+              </div>
+            </div>
+            {/* Hume Business */}
+            <div className="flex justify-between items-center">
+              <span className="text-gray-700 dark:text-gray-300">Hume Business:</span>
+              <div className="text-right">
+                <div className="font-medium text-gray-900 dark:text-white">
+                  ${(500 + formData.minutesPerMonth * 0.04).toFixed(2)}
+                </div>
+                <div className="text-gray-500">
+                  ₹{((500 + formData.minutesPerMonth * 0.04) * 90).toFixed(0)}
+                </div>
+              </div>
+            </div>
+            {/* Grok */}
+            <div className="flex justify-between items-center">
+              <span className="text-gray-700 dark:text-gray-300">Grok:</span>
+              <div className="text-right">
+                <div className="font-medium text-gray-900 dark:text-white">
+                  ${(formData.minutesPerMonth * 0.05).toFixed(2)}
+                </div>
+                <div className="text-gray-500">
+                  ₹{(formData.minutesPerMonth * 0.05 * 90).toFixed(0)}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Voice Option */}
       <div>

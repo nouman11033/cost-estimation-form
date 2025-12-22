@@ -136,11 +136,11 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
                       <span>Included Minutes:</span>
                       <span>{combination.avatarPlan.minutes.toLocaleString()}</span>
                     </div>
-                    <div className="flex justify-between">
+          <div className="flex justify-between">
                       <span>Additional Minutes:</span>
                       <span>{combination.breakdown.avatarAdditionalMinutes.toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between">
+          </div>
+            <div className="flex justify-between">
                       <span>Additional Cost ({formatUSD(combination.avatarPlan.additionalPerMin)}/min):</span>
                       <div className="text-right">
                         <div>{formatUSD(combination.breakdown.avatarAdditionalCostUSD)}</div>
@@ -210,8 +210,8 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+            </div>
+          )}
 
             {/* Hosting Cost Breakdown */}
             <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
@@ -225,15 +225,15 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
                   <span>Users Cost ({combination.hostingOption.costPerUserPerMonthINR}/user):</span>
                   <span>{formatINR(combination.breakdown.hostingUsersCostINR)}</span>
                 </div>
-                <div className="flex justify-between">
+          <div className="flex justify-between">
                   <span>Calls Cost ({combination.hostingOption.costPerCallINR}/call):</span>
                   <span>{formatINR(combination.breakdown.hostingCallsCostINR)}</span>
                 </div>
                 <div className="flex justify-between pt-1 border-t border-gray-300 dark:border-gray-700 font-semibold">
                   <span>Total Hosting Cost:</span>
                   <span>{formatINR(combination.breakdown.hostingCostINR)}</span>
-                </div>
-              </div>
+          </div>
+        </div>
             </div>
 
             {/* Misc Expenses */}
