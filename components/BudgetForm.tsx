@@ -73,7 +73,10 @@ export default function BudgetForm({ onSubmit, isCalculating }: BudgetFormProps)
               hostingAllocationPercent: hostingPercent,
             }));
           }}
-          className="w-full"
+          className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-blue-600"
+          style={{
+            background: `linear-gradient(to right, rgb(37, 99, 235) 0%, rgb(37, 99, 235) ${formData.apiAllocationPercent}%, rgb(229, 231, 235) ${formData.apiAllocationPercent}%, rgb(229, 231, 235) 100%)`
+          }}
         />
         <div className="flex justify-between text-xs text-gray-500 mt-1">
           <span>0%</span>
@@ -99,7 +102,10 @@ export default function BudgetForm({ onSubmit, isCalculating }: BudgetFormProps)
               hostingAllocationPercent: hostingPercent,
             }));
           }}
-          className="w-full"
+          className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-blue-600"
+          style={{
+            background: `linear-gradient(to right, rgb(37, 99, 235) 0%, rgb(37, 99, 235) ${formData.hostingAllocationPercent}%, rgb(229, 231, 235) ${formData.hostingAllocationPercent}%, rgb(229, 231, 235) 100%)`
+          }}
         />
         <div className="flex justify-between text-xs text-gray-500 mt-1">
           <span>0%</span>
@@ -157,7 +163,10 @@ export default function BudgetForm({ onSubmit, isCalculating }: BudgetFormProps)
           step="100"
           value={formData.minutesPerMonth}
           onChange={(e) => updateField('minutesPerMonth', Number(e.target.value))}
-          className="w-full"
+          className="w-full h-2 rounded-lg appearance-none cursor-pointer accent-blue-600"
+          style={{
+            background: `linear-gradient(to right, rgb(37, 99, 235) 0%, rgb(37, 99, 235) ${(formData.minutesPerMonth / 10000) * 100}%, rgb(229, 231, 235) ${(formData.minutesPerMonth / 10000) * 100}%, rgb(229, 231, 235) 100%)`
+          }}
         />
         <div className="flex justify-between text-xs text-gray-500 mt-1">
           <span>0</span>
