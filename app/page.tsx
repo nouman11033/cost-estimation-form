@@ -5,10 +5,12 @@ import { BudgetInput, calculateCombinations, Combination } from '@/lib/calculato
 import BudgetForm from '@/components/BudgetForm';
 import ResultsDisplay from '@/components/ResultsDisplay';
 import ThemeToggle from '@/components/ThemeToggle';
+import { Menu, X } from 'lucide-react';
 
 export default function Home() {
   const [results, setResults] = useState<Combination[]>([]);
   const [isCalculating, setIsCalculating] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const handleCalculate = (input: BudgetInput) => {
     setIsCalculating(true);
@@ -23,23 +25,60 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-black dark:via-black dark:to-black">
       <ThemeToggle />
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
-        <div className="text-center mb-10">
-          <h1 className="text-5xl font-extrabold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent mb-3">
-            iterations w khushi
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
-            Smart cost estimation for avatar & voice solutions
-          </p>
+      
+      {/* Header */}
+      <header className="sticky top-0 z-40 bg-white/80 dark:bg-black/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 shadow-sm">
+        <div className="flex items-center justify-between px-6 py-4">
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+              aria-label="Toggle sidebar"
+            >
+              {sidebarOpen ? (
+                <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+              )}
+            </button>
+            <div>
+              <h1 className="text-2xl font-extrabold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
+                iterations w khushi
+              </h1>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                Smart cost estimation for avatar & voice solutions
+              </p>
+            </div>
+          </div>
         </div>
+      </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white/80 dark:bg-black/80 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300">
+      <div className="flex h-[calc(100vh-73px)]">
+        {/* Sidebar */}
+        <aside
+          className={`${
+            sidebarOpen ? 'w-96' : 'w-0'
+          } transition-all duration-300 ease-in-out overflow-hidden border-r border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-black/95 backdrop-blur-sm`}
+        >
+          <div className="h-full overflow-y-auto p-6">
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+                Budget Configuration
+              </h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Configure your budget and usage parameters
+              </p>
+            </div>
             <BudgetForm onSubmit={handleCalculate} isCalculating={isCalculating} />
           </div>
+        </aside>
 
-          <div className="bg-white/80 dark:bg-black/80 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 flex flex-col min-h-[600px] max-h-[800px]">
-            <ResultsDisplay results={results} isCalculating={isCalculating} />
+        {/* Main Content */}
+        <div className="flex-1 overflow-hidden">
+          <div className="h-full p-6">
+            <div className="h-full bg-white/80 dark:bg-black/80 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl shadow-xl p-8 flex flex-col">
+              <ResultsDisplay results={results} isCalculating={isCalculating} />
+            </div>
           </div>
         </div>
       </div>
