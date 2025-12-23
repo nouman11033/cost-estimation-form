@@ -34,7 +34,7 @@ export default function BudgetForm({ onSubmit, isCalculating }: BudgetFormProps)
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-800">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
           Budget Configuration
         </h2>
@@ -54,7 +54,7 @@ export default function BudgetForm({ onSubmit, isCalculating }: BudgetFormProps)
           step="1000"
           value={formData.monthlyBudgetINR}
           onChange={(e) => updateField('monthlyBudgetINR', Number(e.target.value))}
-          className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-all"
+          className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-800 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-black text-gray-900 dark:text-white transition-all"
           required
         />
       </div>
@@ -138,7 +138,7 @@ export default function BudgetForm({ onSubmit, isCalculating }: BudgetFormProps)
           min="1"
           value={formData.users}
           onChange={(e) => updateField('users', Number(e.target.value))}
-          className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-all"
+          className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-800 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-black text-gray-900 dark:text-white transition-all"
           required
         />
       </div>
@@ -153,7 +153,7 @@ export default function BudgetForm({ onSubmit, isCalculating }: BudgetFormProps)
           min="1"
           value={formData.concurrentSessions}
           onChange={(e) => updateField('concurrentSessions', Number(e.target.value))}
-          className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-all"
+          className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-800 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-black text-gray-900 dark:text-white transition-all"
           required
         />
       </div>
@@ -185,7 +185,7 @@ export default function BudgetForm({ onSubmit, isCalculating }: BudgetFormProps)
           step="100"
           value={formData.minutesPerMonth}
           onChange={(e) => updateField('minutesPerMonth', Number(e.target.value))}
-          className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-all"
+          className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-800 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-black text-gray-900 dark:text-white transition-all"
           required
         />
       </div>

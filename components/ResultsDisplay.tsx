@@ -33,19 +33,21 @@ export default function ResultsDisplay({ results, isCalculating }: ResultsDispla
   }
 
   return (
-    <div>
-      <div className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+    <div className="flex flex-col h-full min-h-0">
+      <div className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-800 flex-shrink-0">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
           Best Combinations
-      </h2>
+        </h2>
         <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
           {results.length} {results.length === 1 ? 'combination' : 'combinations'} found
         </p>
       </div>
-      <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
-        {results.map((combination, index) => (
-          <CombinationCard key={combination.id} combination={combination} rank={index + 1} />
-        ))}
+      <div className="flex-1 overflow-y-auto pr-2 min-h-0">
+        <div className="space-y-4">
+          {results.map((combination, index) => (
+            <CombinationCard key={combination.id} combination={combination} rank={index + 1} />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -61,7 +63,7 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
   const formatUSD = (amount: number) => `$${amount.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
 
   return (
-    <div className="border-2 border-gray-200 dark:border-gray-700 rounded-xl p-5 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300">
+    <div className="border-2 border-gray-200 dark:border-gray-800 rounded-xl p-5 bg-gradient-to-br from-white to-gray-50 dark:from-black dark:to-gray-900 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300">
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center space-x-2">
           <span className="text-xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">#{rank}</span>
@@ -125,7 +127,7 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
         {showDetails && (
           <div className="mt-4 space-y-4 text-xs">
             {/* Avatar Cost Breakdown */}
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black rounded-xl p-4 border border-gray-200 dark:border-gray-800">
               <div className="font-semibold text-gray-900 dark:text-white mb-2">Avatar Cost Breakdown</div>
               <div className="space-y-1 text-gray-700 dark:text-gray-300">
                 <div className="flex justify-between">
@@ -166,7 +168,7 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
 
             {/* Voice Cost Breakdown */}
             {combination.breakdown.voiceCostINR > 0 && (
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-800">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl p-4 border border-blue-200 dark:border-blue-900">
                 <div className="font-semibold text-gray-900 dark:text-white mb-2">Voice Agent Cost Breakdown</div>
                 <div className="space-y-1 text-gray-700 dark:text-gray-300">
                   {combination.voiceAgent?.pricingModel === 'tokens' && combination.breakdown.voiceTotalTokens && (
@@ -249,7 +251,7 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
           )}
 
             {/* Hosting Cost Breakdown */}
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-4 border border-purple-200 dark:border-purple-800">
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-xl p-4 border border-purple-200 dark:border-purple-900">
               <div className="font-semibold text-gray-900 dark:text-white mb-2">Hosting Cost Breakdown</div>
               <div className="space-y-1 text-gray-700 dark:text-gray-300">
                 <div className="flex justify-between">
@@ -272,7 +274,7 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
             </div>
 
             {/* Misc Expenses */}
-            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-xl p-4 border border-yellow-200 dark:border-yellow-800">
+            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/30 dark:to-orange-900/30 rounded-xl p-4 border border-yellow-200 dark:border-yellow-900">
               <div className="font-semibold text-gray-900 dark:text-white mb-2">Miscellaneous Expenses</div>
               <div className="flex justify-between text-gray-700 dark:text-gray-300">
                 <span>Fixed Monthly Cost:</span>
