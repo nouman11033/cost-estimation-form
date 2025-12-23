@@ -156,8 +156,11 @@ function calculateCombination(
   const totalCostUSD = convertINRToUSD(totalCostINR);
 
   // Check if fits budget
+  // Must fit within total monthly budget AND individual allocations
   const apiCostINR = avatarCostINR + voiceCostINR;
-  const fitsBudget = apiCostINR <= apiBudgetINR && hostingCostINR <= hostingBudgetINR;
+  const fitsBudget = totalCostINR <= input.monthlyBudgetINR && 
+                     apiCostINR <= apiBudgetINR && 
+                     hostingCostINR <= hostingBudgetINR;
 
   // Generate warnings
   const warnings: string[] = [];

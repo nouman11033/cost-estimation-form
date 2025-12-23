@@ -44,10 +44,7 @@ export default function Home() {
             <div>
               <h1 className="text-2xl font-extrabold text-red-600 dark:text-red-500">
                 iterations w khushi
-              </h1>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
-                Smart cost estimation for avatar & voice solutions
-              </p>
+          </h1>
             </div>
           </div>
         </div>
@@ -75,7 +72,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <BudgetForm onSubmit={handleCalculate} isCalculating={isCalculating} />
+            <BudgetForm onSubmit={handleCalculate} isCalculating={isCalculating} />
             </div>
           </div>
         </aside>
