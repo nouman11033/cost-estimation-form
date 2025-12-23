@@ -302,25 +302,30 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
   return (
     <div className="group relative border border-gray-200/60 dark:border-gray-800/60 rounded-2xl p-6 bg-gradient-to-br from-white via-gray-50/50 to-white dark:from-gray-950 dark:via-black dark:to-gray-950 hover:shadow-2xl hover:border-blue-300/50 dark:hover:border-blue-600/50 transition-all duration-500 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-indigo-50/0 to-purple-50/0 dark:from-blue-950/0 dark:via-indigo-950/0 dark:to-purple-950/0 group-hover:from-blue-50/30 group-hover:via-indigo-50/20 group-hover:to-purple-50/30 dark:group-hover:from-blue-950/20 dark:group-hover:via-indigo-950/10 dark:group-hover:to-purple-950/20 transition-all duration-500 pointer-events-none"></div>
+      
+      {/* Sticker Badge - Top Left Corner */}
+      <div className="absolute -top-1 -left-1 z-20 transform -rotate-12 origin-center">
+        <div className={`px-4 py-1.5 rounded-md ${badgeColor} shadow-xl backdrop-blur-sm border-2 border-white/50 dark:border-gray-900/50`}>
+          {combination.fitsBudget ? (
+            <span className="flex items-center text-[0.6rem] font-bold">
+              <CheckCircle className="w-2.5 h-2.5 mr-1" />
+              Fits Budget
+            </span>
+          ) : (
+            <span className="flex items-center text-[0.6rem] font-bold">
+              <XCircle className="w-2.5 h-2.5 mr-1" />
+              Over Budget
+            </span>
+          )}
+        </div>
+      </div>
+
       <div className="relative z-10">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center space-x-3">
           <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 shadow-lg">
             <span className="text-[0.9rem] font-extrabold text-white">#{rank}</span>
           </div>
-          <span className={`px-4 py-1.5 rounded-full text-[0.6rem] font-bold ${badgeColor} shadow-md backdrop-blur-sm`}>
-            {combination.fitsBudget ? (
-              <span className="flex items-center">
-                <CheckCircle className="w-3 h-3 mr-1" />
-                Fits Budget
-              </span>
-            ) : (
-              <span className="flex items-center">
-                <XCircle className="w-3 h-3 mr-1" />
-                Over Budget
-              </span>
-            )}
-          </span>
         </div>
         <div className="text-right">
           <div className="text-[1.5rem] font-extrabold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
