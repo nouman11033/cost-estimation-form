@@ -21,21 +21,24 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-black dark:to-black">
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-900 dark:to-black">
       <ThemeToggle />
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-red-600 mb-2">
+      <div className="container mx-auto px-4 py-8 max-w-7xl">
+        <div className="text-center mb-10">
+          <h1 className="text-5xl font-extrabold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent mb-3">
             iterations w khushi
           </h1>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
+            Smart cost estimation for avatar & voice solutions
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-white dark:bg-black dark:border dark:border-gray-800 rounded-lg shadow-lg p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300">
             <BudgetForm onSubmit={handleCalculate} isCalculating={isCalculating} />
           </div>
 
-          <div className="bg-white dark:bg-black dark:border dark:border-gray-800 rounded-lg shadow-lg p-6">
+          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300">
             <ResultsDisplay results={results} isCalculating={isCalculating} />
           </div>
         </div>

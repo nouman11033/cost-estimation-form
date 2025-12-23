@@ -34,10 +34,15 @@ export default function ResultsDisplay({ results, isCalculating }: ResultsDispla
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-        Best Combinations ({results.length} found)
+      <div className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+          Best Combinations
       </h2>
-      <div className="space-y-4 max-h-[600px] overflow-y-auto">
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+          {results.length} {results.length === 1 ? 'combination' : 'combinations'} found
+        </p>
+      </div>
+      <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
         {results.map((combination, index) => (
           <CombinationCard key={combination.id} combination={combination} rank={index + 1} />
         ))}
@@ -56,11 +61,11 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
   const formatUSD = (amount: number) => `$${amount.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
 
   return (
-    <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-4 hover:shadow-md transition-shadow">
+    <div className="border-2 border-gray-200 dark:border-gray-700 rounded-xl p-5 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300">
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center space-x-2">
-          <span className="text-lg font-bold text-blue-600">#{rank}</span>
-          <span className={`px-2 py-1 rounded text-xs font-semibold ${badgeColor}`}>
+          <span className="text-xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">#{rank}</span>
+          <span className={`px-3 py-1.5 rounded-full text-xs font-bold ${badgeColor} shadow-sm`}>
             {combination.fitsBudget ? (
               <span className="flex items-center">
                 <CheckCircle className="w-3 h-3 mr-1" />
@@ -111,16 +116,16 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
       <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-800">
         <button
           onClick={() => setShowDetails(!showDetails)}
-          className="w-full flex items-center justify-between text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+          className="w-full flex items-center justify-between text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/20 px-4 py-2 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
         >
           <span>View Detailed Cost Breakdown</span>
-          {showDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          {showDetails ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
         </button>
 
         {showDetails && (
           <div className="mt-4 space-y-4 text-xs">
             {/* Avatar Cost Breakdown */}
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
               <div className="font-semibold text-gray-900 dark:text-white mb-2">Avatar Cost Breakdown</div>
               <div className="space-y-1 text-gray-700 dark:text-gray-300">
                 <div className="flex justify-between">
@@ -161,7 +166,7 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
 
             {/* Voice Cost Breakdown */}
             {combination.breakdown.voiceCostINR > 0 && (
-              <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-800">
                 <div className="font-semibold text-gray-900 dark:text-white mb-2">Voice Agent Cost Breakdown</div>
                 <div className="space-y-1 text-gray-700 dark:text-gray-300">
                   {combination.voiceAgent?.pricingModel === 'tokens' && combination.breakdown.voiceTotalTokens && (
@@ -244,7 +249,7 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
           )}
 
             {/* Hosting Cost Breakdown */}
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-4 border border-purple-200 dark:border-purple-800">
               <div className="font-semibold text-gray-900 dark:text-white mb-2">Hosting Cost Breakdown</div>
               <div className="space-y-1 text-gray-700 dark:text-gray-300">
                 <div className="flex justify-between">
@@ -267,7 +272,7 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
             </div>
 
             {/* Misc Expenses */}
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
+            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-xl p-4 border border-yellow-200 dark:border-yellow-800">
               <div className="font-semibold text-gray-900 dark:text-white mb-2">Miscellaneous Expenses</div>
               <div className="flex justify-between text-gray-700 dark:text-gray-300">
                 <span>Fixed Monthly Cost:</span>
@@ -276,15 +281,15 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
             </div>
 
             {/* Total Summary */}
-            <div className="bg-blue-50 dark:bg-blue-900 rounded-lg p-3 border-2 border-blue-200 dark:border-blue-800">
-              <div className="font-bold text-gray-900 dark:text-white mb-2">Total Monthly Cost</div>
-              <div className="flex justify-between text-lg">
-                <span className="text-gray-700 dark:text-gray-300">INR:</span>
-                <span className="font-bold text-blue-600 dark:text-blue-400">{formatINR(combination.breakdown.totalCostINR)}</span>
+            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-5 border-2 border-blue-500 dark:border-blue-400 shadow-lg">
+              <div className="font-bold text-white mb-3 text-lg">Total Monthly Cost</div>
+              <div className="flex justify-between text-xl mb-2">
+                <span className="text-blue-100">INR:</span>
+                <span className="font-extrabold text-white">{formatINR(combination.breakdown.totalCostINR)}</span>
               </div>
-              <div className="flex justify-between text-lg mt-1">
-                <span className="text-gray-700 dark:text-gray-300">USD:</span>
-                <span className="font-bold text-blue-600 dark:text-blue-400">{formatUSD(combination.breakdown.totalCostUSD)}</span>
+              <div className="flex justify-between text-xl">
+                <span className="text-blue-100">USD:</span>
+                <span className="font-extrabold text-white">{formatUSD(combination.breakdown.totalCostUSD)}</span>
               </div>
             </div>
           </div>
