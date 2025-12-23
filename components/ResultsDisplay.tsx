@@ -530,12 +530,12 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
 
             {/* Total Summary */}
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-5 border-2 border-blue-500 dark:border-blue-400 shadow-lg">
-              <div className="font-bold text-white mb-3 text-[0.9rem]">Total Monthly Cost</div>
-              <div className="flex justify-between text-[1rem] mb-2">
+              <div className="font-bold text-white mb-3 text-[0.7rem]">Total Monthly Cost</div>
+              <div className="flex justify-between text-[0.8rem] mb-2">
                 <span className="text-blue-100">INR:</span>
                 <span className="font-extrabold text-white">{formatINR(combination.breakdown.totalCostINR)}</span>
               </div>
-              <div className="flex justify-between text-[1rem]">
+              <div className="flex justify-between text-[0.8rem]">
                 <span className="text-blue-100">USD:</span>
                 <span className="font-extrabold text-white">{formatUSD(combination.breakdown.totalCostUSD)}</span>
               </div>
