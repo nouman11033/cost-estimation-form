@@ -192,25 +192,25 @@ export default function BudgetForm({ onSubmit, isCalculating }: BudgetFormProps)
           <div className="space-y-2 text-xs">
             {/* Gemini Live */}
             <div className="flex justify-between items-center">
-              <span className="text-gray-700 dark:text-gray-300">Gemini Live:</span>
+              <span className="text-gray-700 dark:text-gray-300">Gemini Live (2,500-3,500 tokens/min):</span>
               <div className="text-right">
                 <div className="font-medium text-gray-900 dark:text-white">
-                  ${((formData.minutesPerMonth * 300 / 1_000_000) * 17.05).toFixed(2)}
+                  ${((formData.minutesPerMonth * 3000 / 1_000_000) * 17.05).toFixed(2)}
                 </div>
                 <div className="text-gray-500">
-                  ₹{((formData.minutesPerMonth * 300 / 1_000_000) * 17.05 * 90).toFixed(0)}
+                  ₹{((formData.minutesPerMonth * 3000 / 1_000_000) * 17.05 * 90).toFixed(0)}
                 </div>
               </div>
             </div>
             {/* GPT Realtime */}
             <div className="flex justify-between items-center">
-              <span className="text-gray-700 dark:text-gray-300">GPT Realtime:</span>
+              <span className="text-gray-700 dark:text-gray-300">GPT Realtime (670-1,350 tokens/min):</span>
               <div className="text-right">
                 <div className="font-medium text-gray-900 dark:text-white">
-                  ${((formData.minutesPerMonth * 300 / 1_000_000) * 116.00).toFixed(2)}
+                  ${((formData.minutesPerMonth * 1010 / 1_000_000) * 116.00).toFixed(2)}
                 </div>
                 <div className="text-gray-500">
-                  ₹{((formData.minutesPerMonth * 300 / 1_000_000) * 116.00 * 90).toFixed(0)}
+                  ₹{((formData.minutesPerMonth * 1010 / 1_000_000) * 116.00 * 90).toFixed(0)}
                 </div>
               </div>
             </div>

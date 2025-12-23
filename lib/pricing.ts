@@ -19,7 +19,9 @@ export interface VoiceAgent {
   pricingModel: 'tokens' | 'per-minute' | 'per-minute-per-concurrency';
   // For token-based pricing
   pricePer1MTokens?: number;
-  tokensPerMinute?: number; // 300 words/min * ~1 token/word = 300 tokens/min
+  tokensPerMinute?: number; // Average tokens per minute
+  tokensPerMinuteMin?: number; // Minimum tokens per minute (for range display)
+  tokensPerMinuteMax?: number; // Maximum tokens per minute (for range display)
   // For per-minute pricing
   pricePerMinute?: number;
   monthlyBaseCost?: number; // Monthly minimum cost (for Hume) or base cost
@@ -171,14 +173,18 @@ export const VOICE_AGENTS: VoiceAgent[] = [
     name: 'Gemini Live',
     pricingModel: 'tokens',
     pricePer1MTokens: 17.05,
-    tokensPerMinute: 300, // 300 words/min assumption
+    tokensPerMinute: 3000, // 2,500-3,500 tokens/min (using average: 3,000)
+    tokensPerMinuteMin: 2500, // Minimum tokens per minute
+    tokensPerMinuteMax: 3500, // Maximum tokens per minute
   },
   {
     id: 'gpt-realtime',
     name: 'GPT Realtime',
     pricingModel: 'tokens',
     pricePer1MTokens: 116.00,
-    tokensPerMinute: 300,
+    tokensPerMinute: 1010, // 670-1,350 tokens/min (using average: 1,010)
+    tokensPerMinuteMin: 670, // Minimum tokens per minute
+    tokensPerMinuteMax: 1350, // Maximum tokens per minute
   },
   // Per-minute pricing
   {

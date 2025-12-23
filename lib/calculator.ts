@@ -122,7 +122,7 @@ function calculateCombination(
   if (voiceAgent) {
     if (voiceAgent.pricingModel === 'tokens') {
       // Token-based pricing
-      voiceTotalTokens = input.minutesPerMonth * (voiceAgent.tokensPerMinute || 300);
+      voiceTotalTokens = input.minutesPerMonth * (voiceAgent.tokensPerMinute || 1000); // Default to 1000 if not specified
       const tokensInMillions = voiceTotalTokens / 1_000_000;
       voiceCostUSD = tokensInMillions * (voiceAgent.pricePer1MTokens || 0);
       voiceCostINR = convertUSDToINR(voiceCostUSD);

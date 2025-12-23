@@ -167,6 +167,14 @@ function CombinationCard({ combination, rank }: { combination: Combination; rank
                   {combination.voiceAgent?.pricingModel === 'tokens' && combination.breakdown.voiceTotalTokens && (
                     <>
                       <div className="flex justify-between">
+                        <span>Tokens per Minute:</span>
+                        <span>
+                          {combination.voiceAgent.tokensPerMinuteMin && combination.voiceAgent.tokensPerMinuteMax
+                            ? `${combination.voiceAgent.tokensPerMinuteMin.toLocaleString()}-${combination.voiceAgent.tokensPerMinuteMax.toLocaleString()} (avg: ${combination.voiceAgent.tokensPerMinute?.toLocaleString()})`
+                            : `${combination.voiceAgent.tokensPerMinute?.toLocaleString() || 'N/A'}`}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
                         <span>Total Tokens:</span>
                         <span>{combination.breakdown.voiceTotalTokens.toLocaleString()}</span>
                       </div>
